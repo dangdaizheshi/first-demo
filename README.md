@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # first-project
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -42,3 +43,6 @@ npm run build
 ```sh
 npm run lint
 ```
+=======
+# first-demo
+>>>>>>> aea2c3431a79fe623815e5d0789bdc9c3d3e306b
