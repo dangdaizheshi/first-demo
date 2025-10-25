@@ -1,5 +1,5 @@
 <template>
-    
+    <div>fen</div>
 </template>
 
 <script setup>
