@@ -9,8 +9,6 @@ const { y } = useScroll(window);
 
 const catagory = useCatagoryStore();
 
-onMounted(() => getCC());
-
 </script>
 
 <template>
@@ -19,7 +17,7 @@ onMounted(() => getCC());
       <RouterLink class="logo" to="/" />
       <!-- 导航区域 -->
       <ul class="app-header-nav ">
-        <li class="home" v-for = 'item in list' :key = 'item.id'>
+        <li class="home" v-for = 'item in catagory.categoryList' :key = 'item.id'>
           <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
       </ul>

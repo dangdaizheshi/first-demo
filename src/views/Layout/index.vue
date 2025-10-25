@@ -8,6 +8,7 @@ import { onMounted } from 'vue'
 
 const catagory = useCatagoryStore();
 onMounted(() => catagory.getCategory());
+
 </script>
 
 <template>
