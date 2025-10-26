@@ -1,8 +1,12 @@
 import http from '@/utils/http';
 
-export function getBannerAPI() {
+export function getBannerAPI(obj = {}) {
+    const { distributionSite = "1" } = obj;
     return http({
         url: "home/banner",
+        params: {
+            distributionSite,
+        }
     });
 }
 
