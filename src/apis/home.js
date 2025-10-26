@@ -17,3 +17,9 @@ export const getHotAPI = () => {
         url: 'home/hot',
     })
 }
+
+export const getProductAPI = () => {
+    return http({
+        url: 'home/goods',
+    })
+}
