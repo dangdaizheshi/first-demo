@@ -22,6 +22,11 @@ const router = createRouter({
           path: 'category/sub/:id',
           component: () => import('@/views/Subcategory/index.vue'),
           name: 'Subcategory'
+        },
+        {
+          path: 'detail/:id',
+          component: () => import('@/views/Details/index.vue'),
+          name: 'Detail'
         }
       ]
     },
@@ -31,6 +36,11 @@ const router = createRouter({
       name: 'Login'
     }
   ],
+  scrollBehavior() {
+    return{
+      top: 0,
+    }
+  }
 })
 
 export default router
