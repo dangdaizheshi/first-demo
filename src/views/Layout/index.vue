@@ -3,6 +3,7 @@
     <LayoutNav />
     <LayoutHeader />
     <router-view />
+    <!-- <router-view :key = "$route.fullPath"/> 第一种路由缓存解决办法 --> 
     <LayoutFooter />
 </template>
 
