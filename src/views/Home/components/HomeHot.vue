@@ -1,39 +1,46 @@
 <script setup>
-import HomePanel from "./HomePanel.vue";
-import { getHotAPI } from "@/apis/home";
+import HomePanel from './HomePanel.vue';
 import { ref, onMounted } from 'vue';
-const hotList = ref([]);
+import { getHotAPI } from '@/apis/home';
+
+const hotList = ref([])
 const getHotList = async () => {
-  const res = await getHotAPI();
-  hotList.value = res.result;
+    const res = await getHotAPI();
+    hotList.value = res.result;
+    
 }
-onMounted(() => getHotList());
+onMounted(() => getHotList())
 </script>
 
 <template>
-  <HomePanel title="人气推荐" sub-title="人气爆款 不容错过">
-      <ul class="goods-list">
-        <li v-for="item in hotList" :key="item.id">
-          <RouterLink to="/">
-            <img alt="" v-img-lazy = "item.picture"/>
-            <p class="name">{{ item.title }}</p>
-            <p class="desc">{{ item.alt }}</p>
-          </RouterLink>
-        </li>
-      </ul>
+  <HomePanel title = "人气推荐" subtitle = "人气爆款 不容错过">
+    <template #new>
+        <ul class="goods-list">
+            <li v-for="item in hotList" :key="item.id">
+            <RouterLink to="/">
+                <img :src="item.picture" alt="" />
+                <p class="name">{{ item.title }}</p>
+                <p class="price">&yen;{{ item.alt }}</p>
+            </RouterLink>
+            </li>
+        </ul>
+    </template>
   </HomePanel>
 </template>
 
-<style scoped lang="scss">
+
+<style scoped lang='scss'>
 .goods-list {
   display: flex;
   justify-content: space-between;
-  height: 426px;
+  height: 406px;
 
   li {
     width: 306px;
     height: 406px;
-    transition: all 0.5s;
+
+    background: #f0f9f4;
+    transition: all .5s;
 
     &:hover {
       transform: translate3d(0, -3px, 0);
@@ -49,11 +56,13 @@ onMounted(() => getHotList());
       font-size: 22px;
       padding-top: 12px;
       text-align: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
-    .desc {
-      color: #999;
-      font-size: 18px;
+    .price {
+      color: $priceColor;
     }
   }
 }

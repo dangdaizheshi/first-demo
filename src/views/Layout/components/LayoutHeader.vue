@@ -1,3 +1,10 @@
+<script setup>
+import { useCategoryStore } from '@/stores/catagory'
+import { ref, onMounted } from 'vue';
+
+const catagoryStore = useCategoryStore();
+</script>
+
 <template>
   <header class='app-header'>
     <div class="container">
@@ -5,7 +12,10 @@
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
       <ul class="app-header-nav">
-        <li class="home" v-for = 'item in catagory.categoryList' :key = 'item.id'>
+        <li class="home">
+          <RouterLink to="/">首页</RouterLink>
+        </li>
+        <li class="home" v-for="item in catagoryStore.navList" :key = item.id>
           <RouterLink active-class="active" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
         </li>
       </ul>
@@ -14,18 +24,11 @@
         <input type="text" placeholder="搜一搜">
       </div>
       <!-- 头部购物车 -->
+      
     </div>
   </header>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue';
-import { useCatagoryStore } from '@/stores/catagory'
-
-const catagory = useCatagoryStore();
-
-
-</script>
 
 <style scoped lang='scss'>
 .app-header {
@@ -44,7 +47,7 @@ const catagory = useCatagoryStore();
       height: 132px;
       width: 100%;
       text-indent: -9999px;
-      background: url('@/assets/images/11.PNG') no-repeat center 18px / contain;
+      background: url('@/assets/images/logo.png') no-repeat center 18px / contain;
     }
   }
 

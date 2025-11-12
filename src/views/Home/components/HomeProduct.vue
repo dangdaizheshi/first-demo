@@ -1,21 +1,24 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 import HomePanel from './HomePanel.vue'
-import { getProductAPI } from '@/apis/home'
+import { ref, onMounted } from 'vue';
+import { getGoodsAPI } from '@/apis/home';
 import GoodsItem from './GoodsItem.vue';
 
-const goodsProduct = ref([]);
-const getProduct = async () => {
-    const res = await getProductAPI();
-    goodsProduct.value = res.result;
-}
-onMounted(() => getProduct());
+const goodsProduct = ref([])
+const getGoods = async () => {
+  const { result } = await getGoodsAPI();
+  goodsProduct.value = result;
+  console.log(result);
+  
+};
+onMounted(() => getGoods());
 </script>
 
 <template>
   <div class="home-product">
-    <HomePanel :title="cate.name" v-for="cate in goodsProduct" :key="cate.id">
-      <div class="box">
+    <HomePanel :title="cate.name" subtitle="" v-for="cate in goodsProduct" :key = "cate.id">
+      <template #new>
+        <div class="box">
         <RouterLink class="cover" to="/">
           <img :src="cate.picture" />
           <strong class="label">
@@ -25,10 +28,11 @@ onMounted(() => getProduct());
         </RouterLink>
         <ul class="goods-list">
           <li v-for="good in cate.goods" :key="good.id">
-            <GoodsItem :good="good"/>
+            <GoodsItem :goods = "good"/>
           </li>
         </ul>
       </div>
+      </template>
     </HomePanel>
   </div>
 </template>

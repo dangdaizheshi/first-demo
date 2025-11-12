@@ -2,24 +2,27 @@
 import { getBannerAPI } from '@/apis/home';
 import { ref, onMounted } from 'vue';
 
-const bannerlist = ref([]);
-const getBanner = async () => {
+const bannerList = ref([]);
+const getBannerList = async () => {
     const res = await getBannerAPI();
-    bannerlist.value = res.result;
+    bannerList.value = res.result;
 }
-onMounted(() => getBanner());
-
+onMounted(() => getBannerList())
 </script>
+
+
 
 <template>
   <div class="home-banner">
     <el-carousel height="500px">
-      <el-carousel-item v-for="item in bannerlist" :key="item.id">
+      <el-carousel-item v-for="item in bannerList" :key="item.id">
         <img :src="item.imgUrl" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
+
+
 
 <style scoped lang='scss'>
 .home-banner {

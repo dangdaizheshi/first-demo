@@ -1,28 +1,31 @@
 <script setup>
-import { ref, onMounted } from 'vue';
 import HomePanel from './HomePanel.vue';
-import { getNewsAPI } from '@/apis/home';
+import { ref, onMounted } from 'vue';
+import { getNewAPI } from '@/apis/home';
 
-const newsList = ref([]);
-const getNews = async () => {
-    const res = await getNewsAPI();
-    newsList.value = res.result;
+const newList = ref([])
+const getNewList = async () => {
+    const res = await getNewAPI();
+    newList.value = res.result;
+    
 }
-onMounted(() => getNews());
+onMounted(() => getNewList())
 </script>
 
 <template>
-  <home-panel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
-    <ul class="goods-list">
-        <li v-for="item in newsList" :key="item.id">
-            <RouterLink to="`/detail/${item.id}`">
+  <HomePanel title = "新鲜好物" subtitle = "新鲜出炉 品质靠谱">
+    <template #new>
+        <ul class="goods-list">
+            <li v-for="item in newList" :key="item.id">
+            <RouterLink to="/">
                 <img :src="item.picture" alt="" />
                 <p class="name">{{ item.name }}</p>
                 <p class="price">&yen;{{ item.price }}</p>
             </RouterLink>
-        </li>
-    </ul>
-  </home-panel>
+            </li>
+        </ul>
+    </template>
+  </HomePanel>
 </template>
 
 

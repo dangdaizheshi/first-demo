@@ -1,23 +1,26 @@
 <script setup>
-
-import { getCategoryAPI } from '@/apis/layout';
+import { useCategoryStore } from '@/stores/catagory';
 import { ref, onMounted } from 'vue';
-import { useScroll } from '@vueuse/core'
-import { useCatagoryStore } from '@/stores/catagory'
 
-const { y } = useScroll(window);
-
-const catagory = useCatagoryStore();
-
+const catagoryStore = useCategoryStore()
+let isshow = ref(false)
+window.addEventListener('scroll', () => {
+  if(document.documentElement.scrollTop >= 78) isshow.value = true;
+  else isshow.value = false;
+})
+onMounted(() => isshow.value = false)
 </script>
 
 <template>
-  <div class="app-header-sticky" :class="{show: y > 78}">
+  <div class="app-header-sticky" :class = "{show: isshow}">
     <div class="container">
       <RouterLink class="logo" to="/" />
       <!-- 导航区域 -->
       <ul class="app-header-nav ">
-        <li class="home" v-for = 'item in catagory.categoryList' :key = 'item.id'>
+        <li class="home">
+          <RouterLink to="/">首页</RouterLink>
+        </li>
+        <li class="home" v-for="item in catagoryStore.navList" :key = catagoryStore.id>
           <RouterLink active-class="active" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
         </li>
       </ul>

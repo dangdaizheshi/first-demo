@@ -129,7 +129,6 @@
       height: 92px;
       padding: 7px;
       border: 1px solid #ededed;
-      overflow: hidden;
     }
 
     .download {

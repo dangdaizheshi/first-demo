@@ -1,29 +1,35 @@
 import http from '@/utils/http';
 
-export function getBannerAPI(obj = {}) {
-    const { distributionSite = "1" } = obj;
-    return http({
-        url: "home/banner",
-        params: {
-            distributionSite,
-        }
-    });
+// export function getBannerAPI() {
+//     return http({
+//         url: "home/banner",
+//     })
+// }
+
+export function getBannerAPI(params = {}) {
+  const { distributionSite = "1" } = params;
+  return http({
+    url: "/home/banner",
+    params: {
+      distributionSite,
+    },
+  });
 }
 
-export function getNewsAPI() {
+export function getNewAPI() {
     return http({
-        url:'/home/new',
+        url:'/home/new'
     })
 }
 
-export const getHotAPI = () => {
+export function getHotAPI() {
     return http({
-        url: 'home/hot',
+        url:'/home/hot'
     })
 }
 
-export const getProductAPI = () => {
-    return http({
-        url: 'home/goods',
-    })
+export const getGoodsAPI = () => {
+  return http({
+    url: '/home/goods'
+  })
 }

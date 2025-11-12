@@ -4,38 +4,27 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/views/Login/index.vue'),
+    },
+    {
       path: '/',
+      name: 'layout',
       component: () => import('@/views/Layout/index.vue'),
-      name: 'Layout',
       children: [
         {
           path: '',
           component: () => import('@/views/Home/index.vue'),
-          name: 'Home'
         },
         {
           path: 'category/:id',
-          component: () => import('@/views/Category/index.vue'),
-          name: 'Category'
-        },
-        {
-          path: 'category/sub/:id',
-          component: () => import('@/views/Subcategory/index.vue'),
-          name: 'Subcategory'
-        },
-        {
-          path: 'detail/:id',
-          component: () => import('@/views/Details/index.vue'),
-          name: 'Detail'
+          component: () => import('@/views/Category/index.vue')
         }
       ]
-    },
-    {
-      path: '/login',
-      component: () => import('@/views/Login/index.vue'),
-      name: 'Login'
     }
   ],
+  // 配置路由切换时页面自动回到顶部
   scrollBehavior() {
     return{
       top: 0,
